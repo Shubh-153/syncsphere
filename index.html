@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SyncSphere — Your Club. Your Contribution. Your Impact.</title>
+  <meta name="description" content="SyncSphere is a modern campus collaboration platform that eliminates ghost membership and club lead burnout through 10-30 minute micro-tasks, buddy onboarding, workload heatmaps, and verified contribution credits." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="navbar" id="navbar" role="banner">
+    <div class="container navbar-inner">
+      <button class="brand" data-view="landing" aria-label="SyncSphere Home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="11" stroke="currentColor" stroke-width="2.4" opacity="0.35"/>
+            <path d="M14 3A11 11 0 0 1 25 14" stroke="#F97316" stroke-width="2.8" stroke-linecap="round"/>
+            <circle cx="14" cy="14" r="4.5" fill="#F97316"/>
+            <circle cx="23.5" cy="9" r="2.2" fill="#FFFFFF"/>
+          </svg>
+        </span>
+        <span class="brand-text">Sync<strong>Sphere</strong></span>
+        <span class="brand-pill">CAMPUS</span>
+      </button>
+
+      <nav class="nav-links" aria-label="Primary navigation" id="desktop-nav">
+        <button class="nav-link active" data-view="landing">Overview</button>
+        <button class="nav-link" data-view="student">Student Hub</button>
+        <button class="nav-link" data-view="marketplace">
+          Marketplace
+          <span class="nav-badge" id="nav-open-tasks-count">8</span>
+        </button>
+        <button class="nav-link" data-view="buddy">Buddy System</button>
+        <button class="nav-link" data-view="lead">
+          Lead Cockpit
+          <span class="nav-badge nav-badge-alert" id="nav-pending-count">2</span>
+        </button>
+        <button class="nav-link" data-view="credits">Credits &amp; Badges</button>
+        <button class="nav-link" data-view="vault">Club Vault</button>
+      </nav>
+
+      <div class="nav-actions">
+        <div class="persona-switch" role="group" aria-label="Switch demo persona">
+          <button class="persona-btn active" id="persona-student-btn" data-persona="student" title="View as Riya Sharma (1st Year Student)">
+            <span class="avatar-dot avatar-orange">RS</span>
+            <span class="persona-label">Riya</span>
+          </button>
+          <button class="persona-btn" id="persona-lead-btn" data-persona="lead" title="View as Arjun Mehta (Club President)">
+            <span class="avatar-dot avatar-navy">AM</span>
+            <span class="persona-label">Arjun</span>
+          </button>
+        </div>
+        <button class="icon-btn" id="reset-demo-btn" title="Reset Demo Data" aria-label="Reset demo data">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+          </svg>
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+            <line x1="3" y1="18" x2="21" y2="18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer" hidden>
+      <div class="mobile-drawer-inner">
+        <button class="drawer-link" data-view="landing">Overview &amp; Landing</button>
+        <button class="drawer-link" data-view="student">Student Dashboard</button>
+        <button class="drawer-link" data-view="marketplace">Micro-Task Marketplace</button>
+        <button class="drawer-link" data-view="buddy">30-Day Buddy System</button>
+        <button class="drawer-link" data-view="lead">Club Lead Cockpit &amp; Heatmap</button>
+        <button class="drawer-link" data-view="credits">Verified Credits &amp; Badges</button>
+        <button class="drawer-link" data-view="vault">Club Resource Vault</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <!-- 1. LANDING VIEW -->
+    <section class="view active" id="view-landing" aria-label="SyncSphere Overview">
+      <div class="hero">
+        <div class="hero-bg-grid" aria-hidden="true"></div>
+        <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
+        <div class="hero-glow hero-glow-2" aria-hidden="true"></div>
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <div class="hero-eyebrow">
+              <span class="pulse-dot"></span>
+              Built for Campus Organisations &amp; DSA Workflows
+            </div>
+            <h1 class="hero-title">
+              Your Club.<br />
+              Your Contribution.<br />
+              <span class="text-orange">Your Impact.</span>
+            </h1>
+            <p class="hero-subtitle">
+              SyncSphere is the lightweight contribution layer that bridges WhatsApp and UMS—turning overwhelming club events into 10–30 minute micro-tasks with peer buddies, burnout-proof workload heatmaps, and verified duty-leave credits.
+            </p>
+            <div class="hero-cta-row">
+              <button class="btn btn-primary btn-lg" data-view="marketplace">
+                Explore Micro-Tasks
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </button>
+              <button class="btn btn-outline-light btn-lg" data-view="student">
+                Student Dashboard
+              </button>
+              <button class="btn btn-ghost-light btn-lg" data-view="lead">
+                Club Lead Cockpit
+              </button>
+            </div>
+            <div class="hero-trust">
+              <div class="trust-item">
+                <strong>350+</strong>
+                <span>Campus Clubs Ready</span>
+              </div>
+              <div class="trust-divider"></div>
+              <div class="trust-item">
+                <strong>24.2s</strong>
+                <span>Avg. Task Claim Time</span>
+              </div>
+              <div class="trust-divider"></div>
+              <div class="trust-item">
+                <strong>84.5</strong>
+                <span>SUS Usability Score</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-card-stack">
+              <div class="preview-window">
+                <div class="preview-topbar">
+                  <div class="preview-dots"><span></span><span></span><span></span></div>
+                  <span class="preview-url">SyncSphere · Micro-Task Feed</span>
+                  <span class="preview-live-badge">LIVE DEMO</span>
+                </div>
+                <div class="preview-body">
+                  <div class="preview-header-row">
+                    <div>
+                      <span class="preview-kicker">Good First Task · Coding &amp; Robotics Club</span>
+                      <h3>Design 1 Instagram Teaser Slide</h3>
+                    </div>
+                    <span class="chip chip-orange">20 MIN</span>
+                  </div>
+                  <p class="preview-desc">Use the HackLPU Canva template to reveal our keynote speaker. Buddy Aman already dropped the font &amp; logo pack.</p>
+                  <div class="preview-meta-row">
+                    <span class="meta-pill">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                      DSA Verified (+20m DL)
+                    </span>
+                    <span class="meta-pill meta-pill-green">+15 AICTE Credits</span>
+                  </div>
+                  <div class="preview-action-row">
+                    <div class="preview-buddy">
+                      <span class="avatar-xs avatar-orange">AS</span>
+                      <span>Buddy: <strong>Aman Singh</strong></span>
+                    </div>
+                    <button class="btn btn-primary btn-sm" data-view="marketplace">Claim in 1 Tap</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="floating-card floating-card-top">
+                <div class="fc-icon fc-icon-red">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <div>
+                  <div class="fc-label">Burnout Shield Active</div>
+                  <div class="fc-value">Arjun's Load: 88% → 46%</div>
+                </div>
+              </div>
+
+              <div class="floating-card floating-card-bottom">
+                <div class="fc-icon fc-icon-green">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>
+                </div>
+                <div>
+                  <div class="fc-label">Verified Transcript</div>
+                  <div class="fc-value">4 Tasks · Duty Leave Approved</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section section-light">
+        <div class="container">
+          <div class="section-header center">
+            <span class="eyebrow">Grounded in Campus Research (n = 154)</span>
+            <h2>Breaking the Ghost Member &amp; Burnout Lead Spiral</h2>
+            <p class="section-sub">Ghost members aren't lazy, and club leads aren't martyrs. Disengagement happens when event work isn't modularized and certificates reward passive attendance over real work.</p>
+          </div>
+          <div class="stats-grid-4">
+            <article class="stat-card">
+              <div class="stat-figure text-navy">88%</div>
+              <div class="stat-title">Members Ghost in 6 Weeks</div>
+              <p class="stat-note">Mute noisy 300-message WhatsApp groups when no clear starter task exists.</p>
+            </article>
+            <article class="stat-card stat-card-accent">
+              <div class="stat-figure text-orange">74%</div>
+              <div class="stat-title">Leads Report Burnout</div>
+              <p class="stat-note">1–2 leads absorb 18–22 hrs/week of admin work until their CGPA drops.</p>
+            </article>
+            <article class="stat-card">
+              <div class="stat-figure text-navy">92%</div>
+              <div class="stat-title">Never Get a First Task</div>
+              <p class="stat-note">Freshers want to help but freeze at vague "anyone free?" broadcasts.</p>
+            </article>
+            <article class="stat-card">
+              <div class="stat-figure text-orange">3x</div>
+              <div class="stat-title">Higher 60-Day Retention</div>
+              <p class="stat-note">When paired with a 2nd-year buddy and a &lt;30 min micro-task in 14 days.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <span class="eyebrow">Platform Architecture</span>
+              <h2>Six Connected Modules Built for Real Campus Life</h2>
+            </div>
+            <button class="btn btn-secondary" data-view="student">Launch Full Workspace →</button>
+          </div>
+
+          <div class="feature-grid-3">
+            <article class="feature-card" data-view="marketplace" tabindex="0" role="button">
+              <div class="feature-icon icon-orange">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+              </div>
+              <h3>Micro-Task Marketplace</h3>
+              <p>Filter 10–30 minute tasks by skill and time cap. Claim in one tap with a 24h lock and zero-penalty release safety valve.</p>
+              <span class="card-link">Open Marketplace →</span>
+            </article>
+
+            <article class="feature-card" data-view="buddy" tabindex="0" role="button">
+              <div class="feature-icon icon-navy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <h3>30-Day Buddy System</h3>
+              <p>Every freshman is paired with a 2nd-year mentor who shares asset links, reviews drafts privately, and removes senior-clique anxiety.</p>
+              <span class="card-link">Meet Your Buddy →</span>
+            </article>
+
+            <article class="feature-card" data-view="lead" tabindex="0" role="button">
+              <div class="feature-icon icon-orange">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7" rx="1"/><rect x="12" y="6" width="3" height="11" rx="1"/><rect x="17" y="13" width="3" height="4" rx="1"/></svg>
+              </div>
+              <h3>Lead Cockpit &amp; Heatmap</h3>
+              <p>Spot executive overload before CGPA slips. Rebalance 3 tasks to the open pool in one click and approve proofs like WhatsApp quick-actions.</p>
+              <span class="card-link">Open Lead Cockpit →</span>
+            </article>
+
+            <article class="feature-card" data-view="credits" tabindex="0" role="button">
+              <div class="feature-icon icon-navy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              </div>
+              <h3>Verified Credits &amp; Badges</h3>
+              <p>Tie DSA duty leave, AICTE 100 activity points, and portfolio skill badges strictly to verified proof-of-work—ending credential ghosting.</p>
+              <span class="card-link">View Transcript →</span>
+            </article>
+
+            <article class="feature-card" data-view="vault" tabindex="0" role="button">
+              <div class="feature-icon icon-orange">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              </div>
+              <h3>Club Resource Vault</h3>
+              <p>End succession collapse forever with living handover SOPs, approved campus vendor directories, and a live DSA permission tracker.</p>
+              <span class="card-link">Explore Vault →</span>
+            </article>
+
+            <article class="feature-card" data-view="student" tabindex="0" role="button">
+              <div class="feature-icon icon-navy">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <h3>Student Dashboard</h3>
+              <p>Track active 24h task timers, upload Canva or Drive proof links in one tap, and climb transparently from Follower to Contributor to Core.</p>
+              <span class="card-link">Open Student Hub →</span>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="section section-navy">
+        <div class="container">
+          <div class="section-header center light">
+            <span class="eyebrow eyebrow-light">Zero-Friction Workflow</span>
+            <h2>From Induction FOMO to Verified Impact in 4 Steps</h2>
+          </div>
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-num">01</div>
+              <h4>Open via WhatsApp Link</h4>
+              <p>Zero heavy onboarding. Filter beginner-friendly 10–30 min tasks across your campus clubs.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-num">02</div>
+              <h4>Claim &amp; Meet Your Buddy</h4>
+              <p>1-tap claim locks the task for 24h and pings your 2nd-year buddy with assets &amp; tips.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-num">03</div>
+              <h4>Upload Proof Link</h4>
+              <p>Submit your Canva, Figma, Docs, or GitHub URL directly from mobile—or release with zero penalty.</p>
+            </div>
+            <div class="step-card">
+              <div class="step-num">04</div>
+              <h4>Auto-Credit &amp; Badge</h4>
+              <p>Lead approves in 1 tap. Instantly earn DSA duty-leave minutes, AICTE credits, and skill badges.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section section-light">
+        <div class="container">
+          <div class="dual-cta-grid">
+            <div class="dual-card dual-card-white">
+              <span class="chip chip-orange">For Freshers &amp; Members</span>
+              <h3>Try Riya Sharma's Student Hub</h3>
+              <p>See how a 1st-year B.Tech CSE student goes from muting 5 WhatsApp groups to completing verified 20-minute design micro-tasks with her buddy Aman.</p>
+              <button class="btn btn-primary" data-view="student" data-switch-persona="student">Enter as Riya Sharma</button>
+            </div>
+            <div class="dual-card dual-card-navy">
+              <span class="chip chip-light">For Club Leads &amp; Presidents</span>
+              <h3>Try Arjun Mehta's Lead Cockpit</h3>
+              <p>Inspect the Core Team Workload Heatmap, trigger 1-Tap Burnout Rebalancing, publish a new micro-task, and approve student submissions in seconds.</p>
+              <button class="btn btn-orange" data-view="lead" data-switch-persona="lead">Enter as Arjun Mehta</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. STUDENT DASHBOARD VIEW -->
+    <section class="view" id="view-student" aria-label="Student Dashboard">
+      <div class="container page-container">
+        <div class="page-header-banner">
+          <div class="banner-left">
+            <div class="tier-pill">
+              <span class="tier-dot"></span>
+              Tier 2 · Active Contributor
+            </div>
+            <h1 id="student-greeting">Welcome back, Riya Sharma</h1>
+            <p class="banner-sub">B.Tech CSE, 1st Year · Reg: 12214801 · Coding &amp; Robotics Club, Design &amp; UX Guild</p>
+          </div>
+          <div class="banner-actions">
+            <button class="btn btn-primary" data-view="marketplace">+ Claim New Micro-Task</button>
+            <button class="btn btn-outline-light" data-view="credits">DSA Duty-Leave Pass</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid-4" id="student-kpis"></div>
+
+        <div class="card tier-progress-card">
+          <div class="tier-progress-head">
+            <div>
+              <h3>Membership Tier Journey</h3>
+              <p class="muted" id="tier-progress-hint">Complete 2 more verified micro-tasks to unlock <strong>Core Candidate</strong> status.</p>
+            </div>
+            <span class="chip chip-orange" id="tier-progress-label">4 / 6 Tasks to Core</span>
+          </div>
+          <div class="tier-track">
+            <div class="tier-fill" id="tier-progress-bar" style="width: 68%;"></div>
+          </div>
+          <div class="tier-milestones">
+            <span class="ms done">Follower (0–1)</span>
+            <span class="ms active">Contributor (2–5)</span>
+            <span class="ms">Core Candidate (6+)</span>
+          </div>
+        </div>
+
+        <div class="dashboard-split">
+          <div class="dashboard-main">
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h2>My Active Claimed Tasks</h2>
+                  <p class="muted">24-hour lock prevents hoarding. Need to study for mid-terms? Use the zero-penalty safety valve anytime.</p>
+                </div>
+                <button class="btn btn-ghost btn-sm" data-view="marketplace">Browse Pool →</button>
+              </div>
+              <div id="student-active-tasks" class="task-stack"></div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <div>
+                  <h2>Recent Submissions &amp; Approvals</h2>
+                  <p class="muted">Live status synced with Club Lead Arjun Mehta.</p>
+                </div>
+                <button class="btn btn-ghost btn-sm" data-view="credits">Full Ledger →</button>
+              </div>
+              <div id="student-submissions-list" class="submission-list"></div>
+            </div>
+          </div>
+
+          <aside class="dashboard-aside">
+            <div class="card buddy-mini-card">
+              <div class="card-header compact">
+                <h3>Your 30-Day Buddy</h3>
+                <span class="status-online">Online</span>
+              </div>
+              <div class="buddy-profile-row">
+                <div class="avatar-md avatar-orange" id="mini-buddy-avatar">AS</div>
+                <div>
+                  <div class="buddy-name" id="mini-buddy-name">Aman Singh</div>
+                  <div class="muted text-sm" id="mini-buddy-role">2nd Year CSE · Design Lead</div>
+                </div>
+              </div>
+              <blockquote class="buddy-quote">
+                "Hey Riya! I pinned the HackLPU font pack and Canva brand kit in our chat. Ping me before submitting if you want a quick look!"
+              </blockquote>
+              <button class="btn btn-secondary btn-block" data-view="buddy">Open Buddy Chat</button>
+            </div>
+
+            <div class="card">
+              <div class="card-header compact">
+                <h3>Earned Skill Badges</h3>
+                <button class="btn btn-ghost btn-sm" data-view="credits">All →</button>
+              </div>
+              <div id="student-badges-preview" class="badge-mini-grid"></div>
+            </div>
+
+            <div class="card safety-note-card">
+              <div class="safety-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <h4>No-Stress Safety Valve</h4>
+                <p class="text-sm muted">Exam clash? Releasing a claimed task returns it silently to the open pool with zero penalty and zero public shame.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MICRO-TASK MARKETPLACE VIEW -->
+    <section class="view" id="view-marketplace" aria-label="Micro-Task Marketplace">
+      <div class="container page-container">
+        <div class="page-head-row">
+          <div>
+            <span class="eyebrow">10–30 Minute Self-Serve Micro-Tasks</span>
+            <h1>Micro-Task Marketplace</h1>
+            <p class="muted">Pick a bite-sized task that fits between lectures. Every card includes clear steps, a mentor buddy, and DSA duty-leave minutes.</p>
+          </div>
+          <div class="head-stats-pills">
+            <div class="mini-stat-pill">
+              <strong id="mkt-open-count">8</strong>
+              <span>Open Tasks</span>
+            </div>
+            <div class="mini-stat-pill mini-stat-orange">
+              <strong id="mkt-claimed-count">1</strong>
+              <span>My Claimed</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-bar card">
+          <div class="search-box">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" id="mkt-search" placeholder="Search tasks (e.g., Canva, poster, proofread, GitHub, registration)..." aria-label="Search micro-tasks" />
+          </div>
+          <div class="filter-controls">
+            <div class="filter-pills" id="mkt-category-pills" role="group" aria-label="Filter by skill category">
+              <button class="pill active" data-cat="All">All Skills</button>
+              <button class="pill" data-cat="Design">Design</button>
+              <button class="pill" data-cat="Editorial">Editorial</button>
+              <button class="pill" data-cat="Tech">Tech</button>
+              <button class="pill" data-cat="Logistics">Logistics</button>
+              <button class="pill" data-cat="Media">Media</button>
+            </div>
+            <select id="mkt-time-filter" class="select-input" aria-label="Filter by duration">
+              <option value="all">Any Duration</option>
+              <option value="15">≤ 15 min (Quick Win)</option>
+              <option value="20">≤ 20 min</option>
+              <option value="30">≤ 30 min</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="marketplace-grid" class="marketplace-grid"></div>
+      </div>
+    </section>
+
+    <!-- 4. BUDDY SYSTEM VIEW -->
+    <section class="view" id="view-buddy" aria-label="30-Day Buddy System">
+      <div class="container page-container">
+        <div class="page-head-row">
+          <div>
+            <span class="eyebrow">First 14-Day Activation Track</span>
+            <h1>30-Day Freshman Buddy System</h1>
+            <p class="muted">No more intimidating group chats. Get 1-on-1 guidance, asset links, and private draft feedback from a paired 2nd-year mentor.</p>
+          </div>
+        </div>
+
+        <div class="buddy-layout">
+          <div class="buddy-sidebar">
+            <div class="card buddy-hero-card">
+              <div class="buddy-hero-top">
+                <div class="avatar-lg avatar-orange" id="active-buddy-avatar">AS</div>
+                <div>
+                  <span class="chip chip-green">Active Buddy Pair</span>
+                  <h2 id="active-buddy-name">Aman Singh</h2>
+                  <p class="muted text-sm" id="active-buddy-role">2nd Year CSE · Design &amp; Media Lead</p>
+                </div>
+              </div>
+              <div class="buddy-tags" id="active-buddy-tags"></div>
+              <div class="buddy-metrics" id="active-buddy-metrics"></div>
+            </div>
+
+            <div class="card">
+              <h3>Your 30-Day Onboarding Track</h3>
+              <div class="onboarding-timeline">
+                <div class="timeline-item done">
+                  <div class="tl-dot">✓</div>
+                  <div>
+                    <strong>Day 1 · Welcome &amp; Pairing</strong>
+                    <p class="text-sm muted">Matched with senior buddy based on UI/UX &amp; Design interest.</p>
+                  </div>
+                </div>
+                <div class="timeline-item done">
+                  <div class="tl-dot">✓</div>
+                  <div>
+                    <strong>Day 7 · First Micro-Task (&lt;20m)</strong>
+                    <p class="text-sm muted">Completed Tech Rules Proofreading (+10 pts).</p>
+                  </div>
+                </div>
+                <div class="timeline-item done">
+                  <div class="tl-dot">✓</div>
+                  <div>
+                    <strong>Day 14 · Verified Proof &amp; DL Credit</strong>
+                    <p class="text-sm muted">IG Story Slide approved by Arjun; DSA credits logged.</p>
+                  </div>
+                </div>
+                <div class="timeline-item current">
+                  <div class="tl-dot">4</div>
+                  <div>
+                    <strong>Day 30 · Tier 2 Contributor Graduation</strong>
+                    <p class="text-sm muted">Unlock Core Candidate track &amp; become a future buddy.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card buddy-chat-card">
+            <div class="chat-header">
+              <div class="chat-peer">
+                <span class="avatar-sm avatar-orange" id="chat-buddy-avatar">AS</span>
+                <div>
+                  <strong id="chat-buddy-name">Aman Singh</strong>
+                  <div class="text-xs muted">Private 1-on-1 Buddy Channel · Zero Group Spam</div>
+                </div>
+              </div>
+              <span class="chip chip-navy">Day 18 of 30</span>
+            </div>
+
+            <div class="chat-messages" id="buddy-chat-messages" aria-live="polite"></div>
+
+            <div class="chat-quick-prompts">
+              <button class="quick-chip" data-msg="Can you share the Canva brand kit &amp; font files?">Send Canva brand kit</button>
+              <button class="quick-chip" data-msg="Could you review my draft before I submit to Arjun?">Review my draft</button>
+              <button class="quick-chip" data-msg="How do micro-task minutes count toward LPU DSA duty leave?">How does DSA duty leave work?</button>
+            </div>
+
+            <form class="chat-input-row" id="buddy-chat-form">
+              <input type="text" id="buddy-chat-input" placeholder="Message your buddy privately..." autocomplete="off" required />
+              <button type="submit" class="btn btn-primary">Send</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="card mt-24">
+          <div class="card-header">
+            <div>
+              <h2>Switch or Pair with a Skill Buddy</h2>
+              <p class="muted">Exploring a new club domain? Pair with a verified 2nd or 3rd-year mentor in 1 click.</p>
+            </div>
+          </div>
+          <div id="buddy-directory-grid" class="buddy-dir-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CLUB LEAD DASHBOARD & HEATMAP VIEW -->
+    <section class="view" id="view-lead" aria-label="Club Lead Cockpit">
+      <div class="container page-container">
+        <div class="page-header-banner banner-lead">
+          <div class="banner-left">
+            <div class="tier-pill tier-pill-orange">
+              <span class="tier-dot"></span>
+              Executive Cockpit · Coding &amp; Robotics Club
+            </div>
+            <h1>Arjun Mehta's Lead Dashboard</h1>
+            <p class="banner-sub">President &amp; HackLPU 2026 Fest Head · 150 Registered Members · 38 Active Contributors</p>
+          </div>
+          <div class="banner-actions">
+            <button class="btn btn-orange" id="open-create-task-btn">+ Publish Micro-Task</button>
+            <button class="btn btn-outline-light" data-view="vault">Handover Vault</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid-4" id="lead-kpis"></div>
+        <div id="burnout-alert-container"></div>
+
+        <div class="lead-grid">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2>Core Team Workload Heatmap</h2>
+                <p class="muted">Real-time executive capacity (%) &amp; 7-day task intensity to stop lead burnout before exams.</p>
+              </div>
+              <span class="chip chip-navy">Live Capacity</span>
+            </div>
+            <div id="workload-bars" class="workload-bars"></div>
+            <div class="heatmap-matrix-wrap">
+              <div class="heatmap-matrix-head">
+                <h4>7-Day Effort Intensity (Hours / Day)</h4>
+                <div class="heatmap-legend">
+                  <span>Low</span>
+                  <i class="hm-cell hm-1"></i>
+                  <i class="hm-cell hm-2"></i>
+                  <i class="hm-cell hm-3"></i>
+                  <i class="hm-cell hm-4"></i>
+                  <span>Overload</span>
+                </div>
+              </div>
+              <div id="workload-heatmap-grid" class="heatmap-grid"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2>1-Tap Proof Approvals</h2>
+                <p class="muted">Approve student micro-tasks in seconds—auto-credits DSA duty leave &amp; badges.</p>
+              </div>
+              <span class="chip chip-orange" id="pending-approvals-badge">2 Pending</span>
+            </div>
+            <div id="lead-approvals-queue" class="approvals-queue"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. VERIFIED CREDITS & BADGES VIEW -->
+    <section class="view" id="view-credits" aria-label="Verified Contribution Credits and Badges">
+      <div class="container page-container">
+        <div class="page-head-row">
+          <div>
+            <span class="eyebrow">Proof-of-Work Transcript · Zero Credential Ghosting</span>
+            <h1>Verified Contribution Credits &amp; Badges</h1>
+            <p class="muted">Every duty-leave minute and AICTE activity point is backed by an approved deliverable link.</p>
+          </div>
+          <button class="btn btn-primary" id="export-manifest-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Export DSA PDF Manifest
+          </button>
+        </div>
+
+        <div class="credits-top-grid">
+          <div class="card dsa-pass-card">
+            <div class="dsa-pass-head">
+              <div>
+                <span class="chip chip-green">✓ DSA Verified Pass</span>
+                <h2>Riya Sharma</h2>
+                <p class="muted text-sm">Reg: 12214801 · B.Tech CSE (Sem 1) · Tier 2 Active Contributor</p>
+              </div>
+              <div class="qr-box" aria-label="Verification QR Code">
+                <svg width="78" height="78" viewBox="0 0 29 29" fill="#0F172A">
+                  <rect x="0" y="0" width="9" height="9" rx="1.5" fill="none" stroke="#0F172A" stroke-width="2"/>
+                  <rect x="3" y="3" width="3" height="3"/>
+                  <rect x="20" y="0" width="9" height="9" rx="1.5" fill="none" stroke="#0F172A" stroke-width="2"/>
+                  <rect x="23" y="3" width="3" height="3"/>
+                  <rect x="0" y="20" width="9" height="9" rx="1.5" fill="none" stroke="#0F172A" stroke-width="2"/>
+                  <rect x="3" y="23" width="3" height="3"/>
+                  <rect x="12" y="2" width="3" height="3"/>
+                  <rect x="12" y="8" width="3" height="5"/>
+                  <rect x="16" y="11" width="4" height="3"/>
+                  <rect x="11" y="16" width="5" height="3"/>
+                  <rect x="19" y="16" width="3" height="6"/>
+                  <rect x="24" y="14" width="4" height="4"/>
+                  <rect x="24" y="21" width="4" height="6"/>
+                  <rect x="13" y="22" width="4" height="5"/>
+                  <rect x="16" y="4" width="2" height="4" fill="#F97316"/>
+                </svg>
+              </div>
+            </div>
+            <div class="dsa-pass-stats" id="dsa-pass-stats"></div>
+            <div class="dsa-pass-footer">
+              <span>UMS Sync ID: <strong>LPU-DSA-2026-8841</strong></span>
+              <span class="text-green">Attendance Proration Eligible</span>
+            </div>
+          </div>
+
+          <div class="card aicte-card">
+            <div class="card-header compact">
+              <div>
+                <h3>AICTE 100 Activity Points</h3>
+                <p class="muted text-sm">Verified micro-contributions across technical &amp; cultural clubs.</p>
+              </div>
+              <span class="chip chip-orange" id="aicte-points-chip">65 / 100 pts</span>
+            </div>
+            <div class="aicte-ring-row">
+              <div class="ring-wrap">
+                <svg class="progress-ring" width="116" height="116" viewBox="0 0 120 120">
+                  <circle class="ring-bg" cx="60" cy="60" r="50" />
+                  <circle class="ring-fg" id="aicte-ring-circle" cx="60" cy="60" r="50" />
+                </svg>
+                <div class="ring-label">
+                  <strong id="aicte-ring-val">65%</strong>
+                  <span>Complete</span>
+                </div>
+              </div>
+              <div class="aicte-breakdown" id="aicte-breakdown"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-24">
+          <div class="card-header">
+            <div>
+              <h2>Skill &amp; Impact Badges</h2>
+              <p class="muted">Micro-recognition earned through real deliverables—exportable to your campus placement portfolio.</p>
+            </div>
+          </div>
+          <div id="badges-grid" class="badges-grid"></div>
+        </div>
+
+        <div class="card mt-24">
+          <div class="card-header">
+            <div>
+              <h2>Verified Contribution Ledger</h2>
+              <p class="muted">Complete auditable record of approved micro-tasks and duty-leave credits.</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Task Deliverable</th>
+                  <th>Club</th>
+                  <th>Completed</th>
+                  <th>Effort &amp; DL</th>
+                  <th>Credits</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="credits-ledger-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CLUB RESOURCE VAULT VIEW -->
+    <section class="view" id="view-vault" aria-label="Club Resource Vault">
+      <div class="container page-container">
+        <div class="page-head-row">
+          <div>
+            <span class="eyebrow">Institutional Memory · Zero Succession Collapse</span>
+            <h1>Club Resource Vault</h1>
+            <p class="muted">Living handover playbooks, approved vendor contacts, and live DSA permission pipelines so outgoing leads never leave juniors stranded.</p>
+          </div>
+          <div class="vault-tabs" role="tablist" aria-label="Vault sections">
+            <button class="pill active" data-vault-tab="sops" role="tab" aria-selected="true">Handover SOPs</button>
+            <button class="pill" data-vault-tab="vendors" role="tab" aria-selected="false">Vendor Directory</button>
+            <button class="pill" data-vault-tab="pipeline" role="tab" aria-selected="false">DSA Permission Tracker</button>
+          </div>
+        </div>
+
+        <div id="vault-panel-sops" class="vault-panel active">
+          <div id="vault-sops-grid" class="vault-grid"></div>
+        </div>
+
+        <div id="vault-panel-vendors" class="vault-panel" hidden>
+          <div id="vault-vendors-grid" class="vault-grid"></div>
+        </div>
+
+        <div id="vault-panel-pipeline" class="vault-panel" hidden>
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2>DSA &amp; UMS Event Permission Pipeline</h2>
+                <p class="muted">Track auditorium bookings, Block 34 lab keys, and faculty signatures without running between cabins.</p>
+              </div>
+              <span class="chip chip-orange">HackLPU 2026</span>
+            </div>
+            <div id="vault-pipeline-list" class="pipeline-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-brand">Sync<strong>Sphere</strong></div>
+        <p class="footer-tagline">Your Club. Your Contribution. Your Impact.</p>
+      </div>
+      <div class="footer-links">
+        <button class="footer-link" data-view="marketplace">Marketplace</button>
+        <button class="footer-link" data-view="student">Student Hub</button>
+        <button class="footer-link" data-view="buddy">Buddy System</button>
+        <button class="footer-link" data-view="lead">Lead Cockpit</button>
+        <button class="footer-link" data-view="credits">Credits</button>
+        <button class="footer-link" data-view="vault">Vault</button>
+      </div>
+      <div class="footer-meta">
+        Built from INT335 Design Thinking Project P14 · WCAG AA Accessible · Offline LocalStorage Ready
+      </div>
+    </div>
+  </footer>
+
+  <nav class="mobile-bottom-nav" aria-label="Mobile quick navigation">
+    <button class="mb-item active" data-view="student">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      <span>Hub</span>
+    </button>
+    <button class="mb-item" data-view="marketplace">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span>Tasks</span>
+    </button>
+    <button class="mb-item" data-view="lead">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7"/><rect x="12" y="6" width="3" height="11"/><rect x="17" y="13" width="3" height="4"/></svg>
+      <span>Lead</span>
+    </button>
+    <button class="mb-item" data-view="credits">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+      <span>Credits</span>
+    </button>
+    <button class="mb-item" data-view="vault">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span>Vault</span>
+    </button>
+  </nav>
+
+  <!-- Task Submission Workspace Modal -->
+  <div class="modal-backdrop" id="submit-modal" hidden role="dialog" aria-modal="true" aria-labelledby="submit-modal-title">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <span class="chip chip-orange" id="submit-modal-timer">23h 48m left</span>
+          <h3 id="submit-modal-title">Submit Task Proof</h3>
+        </div>
+        <button class="icon-btn modal-close" data-close-modal="submit-modal" aria-label="Close modal">✕</button>
+      </div>
+      <form id="submit-task-form" class="modal-body">
+        <input type="hidden" id="submit-task-id" />
+        <p class="muted text-sm" id="submit-modal-club"></p>
+
+        <div class="modal-checklist-box">
+          <h4>Pre-Submission Checklist</h4>
+          <div id="submit-modal-checklist"></div>
+        </div>
+
+        <div class="form-group">
+          <label for="submit-proof-url">Deliverable Link or File Reference *</label>
+          <input type="text" id="submit-proof-url" placeholder="Paste your shareable Canva, Drive, Figma, or PR link..." required />
+        </div>
+
+        <div class="form-group">
+          <label for="submit-proof-note">Quick Note for Club Lead (Optional)</label>
+          <textarea id="submit-proof-note" rows="2" placeholder="Used the official HackLPU font pack Aman shared..."></textarea>
+        </div>
+
+        <div class="modal-buddy-strip">
+          <span class="avatar-xs avatar-orange">AS</span>
+          <span class="text-sm">Buddy <strong id="submit-modal-buddy-name">Aman Singh</strong> will be notified automatically.</span>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" data-close-modal="submit-modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">Submit for 1-Tap Lead Review</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Publish New Micro-Task Modal -->
+  <div class="modal-backdrop" id="create-task-modal" hidden role="dialog" aria-modal="true" aria-labelledby="create-modal-title">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <span class="chip chip-navy">Lead Action</span>
+          <h3 id="create-modal-title">Publish a 10–30 Min Micro-Task</h3>
+        </div>
+        <button class="icon-btn modal-close" data-close-modal="create-task-modal" aria-label="Close modal">✕</button>
+      </div>
+      <form id="create-task-form" class="modal-body">
+        <div class="form-group">
+          <label for="new-task-title">Task Title *</label>
+          <input type="text" id="new-task-title" placeholder="e.g., Design 2 Speaker Countdown Stories" required />
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="new-task-category">Skill Category *</label>
+            <select id="new-task-category" required>
+              <option value="Design">Design</option>
+              <option value="Editorial">Editorial</option>
+              <option value="Tech">Tech</option>
+              <option value="Logistics">Logistics</option>
+              <option value="Media">Media</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="new-task-duration">Time Cap (Minutes) *</label>
+            <select id="new-task-duration" required>
+              <option value="15">15 min (+10 pts)</option>
+              <option value="20" selected>20 min (+15 pts)</option>
+              <option value="25">25 min (+20 pts)</option>
+              <option value="30">30 min (+25 pts)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="new-task-club">Club / Event *</label>
+          <input type="text" id="new-task-club" value="Coding &amp; Robotics Club · HackLPU" required />
+        </div>
+        <div class="form-group">
+          <label for="new-task-desc">Clear Scope &amp; Asset Link *</label>
+          <textarea id="new-task-desc" rows="2" placeholder="Explain exact deliverable so a 1st-year fresher can finish in under 30 mins..." required></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" data-close-modal="create-task-modal">Cancel</button>
+          <button type="submit" class="btn btn-orange">Publish to Open Pool</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SOP Reader Modal -->
+  <div class="modal-backdrop" id="sop-modal" hidden role="dialog" aria-modal="true" aria-labelledby="sop-modal-title">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <div>
+          <span class="chip chip-orange" id="sop-modal-tag">Playbook</span>
+          <h3 id="sop-modal-title">SOP Title</h3>
+        </div>
+        <button class="icon-btn modal-close" data-close-modal="sop-modal" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body" id="sop-modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal="sop-modal">Done Reading</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
