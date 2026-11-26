@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Fuzion — Official Participant Registration &amp; Verification</title>
+  <meta name="description" content="Official registration portal for Code Fuzion. Please enter accurate name, registration number, phone number, and email address." />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Dedicated styles for Code Fuzion Registration */
+    .cf-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(180deg, var(--navy-950) 0%, var(--navy-900) 420px, var(--slate-50) 420px);
+    }
+
+    .cf-nav {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .cf-nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cf-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(249, 115, 22, 0.15);
+      border: 1px solid rgba(249, 115, 22, 0.35);
+      color: var(--orange-400);
+    }
+
+    .cf-main {
+      flex: 1;
+      padding: 2.5rem 1rem 4rem;
+    }
+
+    .cf-container {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .cf-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--slate-200);
+      box-shadow: 0 24px 60px rgba(9, 17, 34, 0.22);
+      overflow: hidden;
+    }
+
+    .cf-card-header {
+      padding: 2.5rem 2.2rem 1.8rem;
+      background: linear-gradient(135deg, #0d182e 0%, #152544 100%);
+      color: var(--white);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+    }
+
+    .cf-card-header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 100%;
+      background: radial-gradient(circle at 100% 0%, rgba(249, 115, 22, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cf-card-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-top: 0.6rem;
+      line-height: 1.15;
+    }
+
+    .cf-card-subtitle {
+      color: var(--slate-300);
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      line-height: 1.5;
+    }
+
+    /* Warning Notice Box */
+    .cf-warning-banner {
+      margin: 1.5rem 2.2rem 0;
+      background: #FFF1F2;
+      border: 1.5px solid #FDA4AF;
+      border-radius: var(--radius-md);
+      padding: 1.1rem 1.3rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .cf-warning-icon {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      color: #E11D48;
+      margin-top: 2px;
+    }
+
+    .cf-warning-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #9F1239;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cf-warning-badge {
+      background: #BE123C;
+      color: #FFFFFF;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .cf-warning-desc {
+      font-size: 0.85rem;
+      color: #881337;
+      margin-top: 0.35rem;
+      line-height: 1.5;
+    }
+
+    .cf-form {
+      padding: 1.8rem 2.2rem 2.4rem;
+    }
+
+    .cf-field-group {
+      margin-bottom: 1.4rem;
+    }
+
+    .cf-field-label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--navy-900);
+      margin-bottom: 0.45rem;
+    }
+
+    .cf-field-label .req {
+      color: var(--red-600);
+      margin-left: 2px;
+    }
+
+    .cf-input-wrapper {
+      position: relative;
+    }
+
+    .cf-input-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--slate-500);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cf-input {
+      width: 100%;
+      height: 48px;
+      padding: 0 44px 0 44px;
+      font-size: 0.95rem;
+      color: var(--navy-900);
+      background: var(--slate-50);
+      border: 1.5px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .cf-input:focus {
+      outline: none;
+      background: var(--white);
+      border-color: var(--orange-500);
+      box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+    }
+
+    .cf-input.is-valid {
+      border-color: var(--green-600);
+      background-color: #F0FDF4;
+    }
+
+    .cf-input.is-invalid {
+      border-color: var(--red-600);
+      background-color: #FEF2F2;
+    }
+
+    .cf-input-status {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      font-size: 1rem;
+    }
+
+    .cf-field-help {
+      font-size: 0.78rem;
+      color: var(--slate-500);
+      margin-top: 0.35rem;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .cf-field-error {
+      color: var(--red-600);
+      font-weight: 600;
+      display: none;
+    }
+
+    .cf-input.is-invalid ~ .cf-field-help .cf-field-error {
+      display: inline;
+    }
+    .cf-input.is-invalid ~ .cf-field-help .cf-field-hint {
+      display: none;
+    }
+
+    .cf-checkbox-card {
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin: 1.8rem 0 1.5rem;
+      cursor: pointer;
+    }
+
+    .cf-checkbox-card input[type="checkbox"] {
+      width: 19px;
+      height: 19px;
+      margin-top: 2px;
+      accent-color: var(--orange-500);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .cf-checkbox-label {
+      font-size: 0.84rem;
+      color: var(--slate-700);
+      line-height: 1.45;
+      cursor: pointer;
+    }
+
+    .cf-checkbox-label strong {
+      color: var(--navy-900);
+    }
+
+    .cf-submit-btn {
+      width: 100%;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      background: var(--orange-500);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(249, 115, 22, 0.35);
+      transition: var(--transition);
+    }
+
+    .cf-submit-btn:hover {
+      background: var(--orange-600);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(249, 115, 22, 0.45);
+    }
+
+    .cf-submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Review & Confirmation Modal */
+    .cf-review-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.2rem 0;
+      font-size: 0.9rem;
+    }
+
+    .cf-review-table tr {
+      border-bottom: 1px solid var(--slate-200);
+    }
+
+    .cf-review-table td {
+      padding: 10px 8px;
+    }
+
+    .cf-review-label {
+      font-weight: 700;
+      color: var(--slate-600);
+      width: 38%;
+    }
+
+    .cf-review-val {
+      font-weight: 700;
+      color: var(--navy-900);
+      word-break: break-word;
+    }
+
+    /* Success Card */
+    .cf-success-box {
+      text-align: center;
+      padding: 3rem 2rem 2.5rem;
+    }
+
+    .cf-success-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #DCFCE7;
+      color: #16A34A;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .cf-ticket-box {
+      background: var(--slate-50);
+      border: 1.5px dashed var(--slate-300);
+      border-radius: var(--radius-md);
+      padding: 1.4rem;
+      margin: 1.8rem 0;
+      text-align: left;
+    }
+
+    .cf-ticket-id {
+      font-family: monospace;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--orange-600);
+      letter-spacing: 0.05em;
+    }
+
+    /* Footer & Admin trigger */
+    .cf-footer {
+      padding: 2rem 1rem;
+      text-align: center;
+      color: var(--slate-500);
+      font-size: 0.82rem;
+    }
+
+    .cf-admin-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--slate-500);
+      text-decoration: underline;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      margin-top: 0.6rem;
+      font-size: 0.78rem;
+    }
+
+    .cf-admin-trigger:hover {
+      color: var(--navy-900);
+    }
+
+    @media (max-width: 640px) {
+      .cf-card-header {
+        padding: 1.8rem 1.4rem 1.4rem;
+      }
+      .cf-card-title {
+        font-size: 1.7rem;
+      }
+      .cf-warning-banner {
+        margin: 1.2rem 1.4rem 0;
+        padding: 0.9rem 1rem;
+      }
+      .cf-form {
+        padding: 1.4rem 1.4rem 2rem;
+      }
+    }
+  </style>
+</head>
+<body class="cf-wrapper">
+  <!-- Minimal Top Nav -->
+  <header class="cf-nav" role="banner">
+    <div class="container cf-nav-inner">
+      <a href="index.html" class="brand" style="text-decoration: none;">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="11" stroke="currentColor" stroke-width="2.4" opacity="0.35"/>
+            <path d="M14 3A11 11 0 0 1 25 14" stroke="#F97316" stroke-width="2.8" stroke-linecap="round"/>
+            <circle cx="14" cy="4.5" r="4.5" fill="#F97316"/>
+            <circle cx="23.5" cy="9" r="2.2" fill="#FFFFFF"/>
+          </svg>
+        </span>
+        <span class="brand-text" style="color: #fff;">Sync<strong>Sphere</strong></span>
+      </a>
+      <span class="cf-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Official Portal
+      </span>
+    </div>
+  </header>
+
+  <main class="cf-main">
+    <div class="cf-container">
+      <div class="cf-card" id="form-container">
+        <!-- Header -->
+        <div class="cf-card-header">
+          <span class="chip chip-orange" style="margin-bottom: 6px;">Event Registration 2026</span>
+          <h1 class="cf-card-title">Code Fuzion</h1>
+          <p class="cf-card-subtitle">
+            Participant details verification &amp; team allocation portal. Enter your official details below to register and secure your event pass.
+          </p>
+        </div>
+
+        <!-- Strict Warning Banner based on Ayush's instruction -->
+        <div class="cf-warning-banner" role="alert">
+          <div class="cf-warning-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+              <line x1="12" y1="9" x2="12" y2="13"/>
+              <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+          </div>
+          <div>
+            <div class="cf-warning-title">
+              <span>CRITICAL: Please Submit 100% Accurate Details</span>
+              <span class="cf-warning-badge">Strict</span>
+            </div>
+            <p class="cf-warning-desc">
+              During previous events (e.g., <strong>Macbease</strong>), several participants submitted incorrect, incomplete, or mistyped Registration Numbers and Phone Numbers, resulting in disqualified teams and cancelled certificates.
+              <br /><br />
+              <strong>All submitted entries will be cross-checked with the official student database.</strong> Mismatched or fake details will cause immediate removal from the participant pool.
+            </p>
+          </div>
+        </div>
+
+        <!-- Registration Form -->
+        <form class="cf-form" id="cf-registration-form" novalidate>
+          <!-- 1. FULL NAME -->
+          <div class="cf-field-group">
+            <label class="cf-field-label" for="participant-name">
+              Full Name <span class="req">*</span>
+            </label>
+            <div class="cf-input-wrapper">
+              <span class="cf-input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+              </span>
+              <input
+                type="text"
+                id="participant-name"
+                name="name"
+                class="cf-input"
+                placeholder="e.g. Rahul Sharma"
+                minlength="3"
+                required
+                autocomplete="name"
+              />
+              <span class="cf-input-status" id="status-name"></span>
+            </div>
+            <div class="cf-field-help">
+              <span class="cf-field-hint">Enter your name exactly as it appears on your official Student ID / LMS.</span>
+              <span class="cf-field-error" id="error-name">Please enter your full name (at least 3 characters).</span>
+            </div>
+          </div>
+
+          <!-- 2. REGISTRATION NUMBER -->
+          <div class="cf-field-group">
+            <label class="cf-field-label" for="participant-regno">
+              Registration Number (Student ID) <span class="req">*</span>
+            </label>
+            <div class="cf-input-wrapper">
+              <span class="cf-input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="16" rx="2"/>
+                  <line x1="7" y1="8" x2="17" y2="8"/>
+                  <line x1="7" y1="12" x2="13" y2="12"/>
+                  <line x1="7" y1="16" x2="10" y2="16"/>
+                </svg>
+              </span>
+              <input
+                type="text"
+                id="participant-regno"
+                name="regno"
+                class="cf-input"
+                placeholder="e.g. 12108745 or 2024BCSE102"
+                style="text-transform: uppercase;"
+                required
+                autocomplete="off"
+              />
+              <span class="cf-input-status" id="status-regno"></span>
+            </div>
+            <div class="cf-field-help">
+              <span class="cf-field-hint">Your unique university registration number (letters &amp; digits only).</span>
+              <span class="cf-field-error" id="error-regno">Please enter a valid Registration Number (6–12 alphanumeric characters).</span>
+            </div>
+          </div>
+
+          <!-- 3. PHONE NUMBER -->
+          <div class="cf-field-group">
+            <label class="cf-field-label" for="participant-phone">
+              WhatsApp / Contact Number <span class="req">*</span>
+            </label>
+            <div class="cf-input-wrapper">
+              <span class="cf-input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+              </span>
+              <input
+                type="tel"
+                id="participant-phone"
+                name="phone"
+                class="cf-input"
+                placeholder="10-digit mobile number (e.g. 9876543210)"
+                maxlength="10"
+                pattern="[6-9][0-9]{9}"
+                required
+                autocomplete="tel"
+              />
+              <span class="cf-input-status" id="status-phone"></span>
+            </div>
+            <div class="cf-field-help">
+              <span class="cf-field-hint">Must be active on WhatsApp for urgent event notifications and coordination.</span>
+              <span class="cf-field-error" id="error-phone">Enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.</span>
+            </div>
+          </div>
+
+          <!-- 4. EMAIL ADDRESS -->
+          <div class="cf-field-group">
+            <label class="cf-field-label" for="participant-email">
+              Email Address <span class="req">*</span>
+            </label>
+            <div class="cf-input-wrapper">
+              <span class="cf-input-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                  <polyline points="22,6 12,13 2,6"/>
+                </svg>
+              </span>
+              <input
+                type="email"
+                id="participant-email"
+                name="email"
+                class="cf-input"
+                placeholder="name@university.edu or name@gmail.com"
+                required
+                autocomplete="email"
+              />
+              <span class="cf-input-status" id="status-email"></span>
+            </div>
+            <div class="cf-field-help">
+              <span class="cf-field-hint">Your primary email where registration confirmation &amp; pass will be sent.</span>
+              <span class="cf-field-error" id="error-email">Please enter a valid email address.</span>
+            </div>
+          </div>
+
+          <!-- Mandatory Accuracy Confirmation Checkbox -->
+          <label class="cf-checkbox-card" for="confirm-accuracy">
+            <input type="checkbox" id="confirm-accuracy" required />
+            <span class="cf-checkbox-label">
+              <strong>I solemnly declare that all above details are 100% correct and belong to me.</strong> I understand that entering incorrect details, fake registration numbers, or mismatched phone numbers will result in automatic disqualification from Code Fuzion without further notice.
+            </span>
+          </label>
+
+          <!-- Submit Button -->
+          <button type="submit" class="cf-submit-btn" id="submit-btn">
+            <span>Verify Details &amp; Register</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </form>
+
+        <!-- Success View (Hidden by default) -->
+        <div class="cf-success-box" id="success-view" hidden>
+          <div class="cf-success-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h2 style="font-size: 1.8rem; color: var(--navy-900); font-weight: 800;">Registration Confirmed!</h2>
+          <p style="color: var(--slate-600); font-size: 0.95rem; margin-top: 6px;">
+            Your verified submission for <strong>Code Fuzion</strong> has been recorded.
+          </p>
+
+          <div class="cf-ticket-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 800; color: var(--slate-500); letter-spacing: 0.05em;">Participant Pass ID</span>
+              <span class="chip chip-green" style="font-size: 0.72rem; padding: 2px 8px;">VERIFIED</span>
+            </div>
+            <div class="cf-ticket-id" id="ticket-id-display">CF-2026-XXXX</div>
+            <div style="margin-top: 12px; font-size: 0.88rem; color: var(--navy-900);" id="ticket-summary">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <a href="https://chat.whatsapp.com/" target="_blank" rel="noopener" class="btn btn-primary" style="justify-content: center; height: 48px; background: #25D366; border-color: #25D366; color: white;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2z"/>
+              </svg>
+              <span>Join Official Code Fuzion WhatsApp Group</span>
+            </a>
+            <button type="button" class="btn btn-ghost" id="register-another-btn" style="justify-content: center; height: 44px;">
+              Submit Another Response
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Pre-Submission Double-Check Modal -->
+  <div class="modal-backdrop" id="review-modal" hidden role="dialog" aria-modal="true" aria-labelledby="review-title">
+    <div class="modal modal-lg">
+      <div class="modal-header">
+        <div>
+          <span class="chip chip-orange">Final Verification Step</span>
+          <h3 id="review-title" style="margin-top: 4px;">Double-Check Your Details</h3>
+        </div>
+        <button class="icon-btn modal-close" id="close-review-btn" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: var(--slate-600); line-height: 1.45;">
+          Please confirm that the information below matches your official records. <strong>Once submitted, details cannot be changed.</strong>
+        </p>
+
+        <table class="cf-review-table">
+          <tbody>
+            <tr>
+              <td class="cf-review-label">Full Name:</td>
+              <td class="cf-review-val" id="review-name"></td>
+            </tr>
+            <tr>
+              <td class="cf-review-label">Registration No:</td>
+              <td class="cf-review-val" id="review-regno"></td>
+            </tr>
+            <tr>
+              <td class="cf-review-label">Contact / WhatsApp:</td>
+              <td class="cf-review-val" id="review-phone"></td>
+            </tr>
+            <tr>
+              <td class="cf-review-label">Email Address:</td>
+              <td class="cf-review-val" id="review-email"></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="background: #FEF3C7; border: 1px solid #FCD34D; border-radius: 6px; padding: 10px 12px; font-size: 0.8rem; color: #92400E;">
+          ⚠️ <em>Is anything mistyped? If yes, click "Edit Details" to fix it now.</em>
+        </div>
+      </div>
+      <div class="modal-footer" style="display: flex; gap: 10px; justify-content: flex-end;">
+        <button type="button" class="btn btn-ghost" id="edit-details-btn">Edit Details</button>
+        <button type="button" class="btn btn-orange" id="final-confirm-btn">
+          <span>Yes, Confirm &amp; Submit</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Organizer / Admin Drawer for Exporting Responses -->
+  <div class="modal-backdrop" id="admin-modal" hidden role="dialog" aria-modal="true" aria-labelledby="admin-title">
+    <div class="modal modal-lg" style="max-width: 800px;">
+      <div class="modal-header">
+        <div>
+          <span class="chip chip-navy">Organizer Dashboard</span>
+          <h3 id="admin-title" style="margin-top: 4px;">Code Fuzion Submissions (<span id="admin-count">0</span>)</h3>
+        </div>
+        <button class="icon-btn modal-close" id="close-admin-btn" aria-label="Close modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1rem;">
+          <button type="button" class="btn btn-primary" id="download-csv-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7 10 12 15 17 10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            <span>Download Clean CSV (Excel)</span>
+          </button>
+          <button type="button" class="btn btn-ghost" id="copy-summary-btn">Copy Summary</button>
+          <button type="button" class="btn btn-ghost" id="clear-data-btn" style="color: var(--red-600); margin-left: auto;">
+            Clear All Data
+          </button>
+        </div>
+
+        <div style="max-height: 320px; overflow-y: auto; border: 1px solid var(--slate-200); border-radius: var(--radius-sm);">
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem;">
+            <thead style="background: var(--slate-100); position: sticky; top: 0; z-index: 1;">
+              <tr>
+                <th style="padding: 8px 10px; text-align: left;">Pass ID</th>
+                <th style="padding: 8px 10px; text-align: left;">Name</th>
+                <th style="padding: 8px 10px; text-align: left;">Reg No</th>
+                <th style="padding: 8px 10px; text-align: left;">Phone</th>
+                <th style="padding: 8px 10px; text-align: left;">Email</th>
+                <th style="padding: 8px 10px; text-align: left;">Time</th>
+              </tr>
+            </thead>
+            <tbody id="admin-table-body">
+              <!-- Injected by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" id="done-admin-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="cf-footer">
+    <p>Code Fuzion 2026 &bull; Powered by <strong>SyncSphere Campus System</strong></p>
+    <button type="button" class="cf-admin-trigger" id="admin-trigger-btn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+      </svg>
+      Organizer Access &amp; CSV Export
+    </button>
+  </footer>
+
+  <script>
+    (function() {
+      'use strict';
+
+      const STORAGE_KEY = 'code_fuzion_registrations_v1';
+
+      // DOM Elements
+      const form = document.getElementById('cf-registration-form');
+      const formContainer = document.getElementById('form-container');
+      const successView = document.getElementById('success-view');
+      const submitBtn = document.getElementById('submit-btn');
+
+      const nameInput = document.getElementById('participant-name');
+      const regnoInput = document.getElementById('participant-regno');
+      const phoneInput = document.getElementById('participant-phone');
+      const emailInput = document.getElementById('participant-email');
+      const accuracyCheck = document.getElementById('confirm-accuracy');
+
+      // Modals
+      const reviewModal = document.getElementById('review-modal');
+      const closeReviewBtn = document.getElementById('close-review-btn');
+      const editDetailsBtn = document.getElementById('edit-details-btn');
+      const finalConfirmBtn = document.getElementById('final-confirm-btn');
+
+      const adminModal = document.getElementById('admin-modal');
+      const adminTriggerBtn = document.getElementById('admin-trigger-btn');
+      const closeAdminBtn = document.getElementById('close-admin-btn');
+      const doneAdminBtn = document.getElementById('done-admin-btn');
+      const downloadCsvBtn = document.getElementById('download-csv-btn');
+      const copySummaryBtn = document.getElementById('copy-summary-btn');
+      const clearDataBtn = document.getElementById('clear-data-btn');
+      const adminTableBody = document.getElementById('admin-table-body');
+      const adminCount = document.getElementById('admin-count');
+      const registerAnotherBtn = document.getElementById('register-another-btn');
+
+      // Validation Regex
+      const REGEX = {
+        name: /^[a-zA-Z\s.]{3,60}$/,
+        regno: /^[A-Za-z0-9]{5,15}$/,
+        phone: /^[6-9]\d{9}$/,
+        email: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+      };
+
+      // Realtime validation helper
+      function validateField(input, regex) {
+        const val = input.value.trim();
+        const isValid = regex.test(val);
+        input.classList.toggle('is-valid', isValid);
+        input.classList.toggle('is-invalid', !isValid && val.length > 0);
+        return isValid;
+      }
+
+      // Input listeners
+      nameInput.addEventListener('input', () => validateField(nameInput, REGEX.name));
+      
+      regnoInput.addEventListener('input', () => {
+        regnoInput.value = regnoInput.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+        validateField(regnoInput, REGEX.regno);
+      });
+
+      phoneInput.addEventListener('input', () => {
+        phoneInput.value = phoneInput.value.replace(/[^0-9]/g, '').slice(0, 10);
+        validateField(phoneInput, REGEX.phone);
+      });
+
+      emailInput.addEventListener('input', () => validateField(emailInput, REGEX.email));
+
+      // Handle form review step
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const isNameValid = validateField(nameInput, REGEX.name);
+        const isRegValid = validateField(regnoInput, REGEX.regno);
+        const isPhoneValid = validateField(phoneInput, REGEX.phone);
+        const isEmailValid = validateField(emailInput, REGEX.email);
+
+        if (!isNameValid) { nameInput.focus(); return; }
+        if (!isRegValid) { regnoInput.focus(); return; }
+        if (!isPhoneValid) { phoneInput.focus(); return; }
+        if (!isEmailValid) { emailInput.focus(); return; }
+
+        if (!accuracyCheck.checked) {
+          alert('Please check the declaration box confirming your details are accurate.');
+          accuracyCheck.focus();
+          return;
+        }
+
+        // Populate Review Modal
+        document.getElementById('review-name').textContent = nameInput.value.trim();
+        document.getElementById('review-regno').textContent = regnoInput.value.trim();
+        document.getElementById('review-phone').textContent = phoneInput.value.trim();
+        document.getElementById('review-email').textContent = emailInput.value.trim();
+
+        reviewModal.removeAttribute('hidden');
+      });
+
+      // Close review modal
+      closeReviewBtn.addEventListener('click', () => reviewModal.setAttribute('hidden', ''));
+      editDetailsBtn.addEventListener('click', () => reviewModal.setAttribute('hidden', ''));
+
+      // Final Confirm & Save
+      finalConfirmBtn.addEventListener('click', () => {
+        reviewModal.setAttribute('hidden', '');
+
+        const passId = 'CF-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+        const record = {
+          id: passId,
+          name: nameInput.value.trim(),
+          regno: regnoInput.value.trim(),
+          phone: phoneInput.value.trim(),
+          email: emailInput.value.trim(),
+          timestamp: new Date().toISOString()
+        };
+
+        // Save locally
+        const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        existing.push(record);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(existing));
+
+        // Display Success Screen
+        form.setAttribute('hidden', '');
+        document.querySelector('.cf-warning-banner').setAttribute('hidden', '');
+        successView.removeAttribute('hidden');
+
+        document.getElementById('ticket-id-display').textContent = record.id;
+        document.getElementById('ticket-summary').innerHTML = `
+          <strong>Registered Name:</strong> ${record.name}<br />
+          <strong>Reg No:</strong> ${record.regno}<br />
+          <strong>Phone:</strong> +91 ${record.phone}<br />
+          <strong>Email:</strong> ${record.email}
+        `;
+
+        form.reset();
+        [nameInput, regnoInput, phoneInput, emailInput].forEach(el => el.classList.remove('is-valid', 'is-invalid'));
+      });
+
+      // Submit another
+      registerAnotherBtn.addEventListener('click', () => {
+        successView.setAttribute('hidden', '');
+        form.removeAttribute('hidden');
+        document.querySelector('.cf-warning-banner').removeAttribute('hidden');
+        nameInput.focus();
+      });
+
+      // Admin Modal logic
+      function renderAdminTable() {
+        const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        adminCount.textContent = data.length;
+
+        if (data.length === 0) {
+          adminTableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 20px; color: var(--slate-500);">No registrations submitted yet.</td></tr>';
+          return;
+        }
+
+        adminTableBody.innerHTML = data.map(item => `
+          <tr style="border-bottom: 1px solid var(--slate-200);">
+            <td style="padding: 8px 10px; font-family: monospace; font-weight: 700; color: var(--orange-600);">${item.id}</td>
+            <td style="padding: 8px 10px; font-weight: 600;">${item.name}</td>
+            <td style="padding: 8px 10px; font-family: monospace;">${item.regno}</td>
+            <td style="padding: 8px 10px;">${item.phone}</td>
+            <td style="padding: 8px 10px;">${item.email}</td>
+            <td style="padding: 8px 10px; color: var(--slate-500); font-size: 0.76rem;">${new Date(item.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+          </tr>
+        `).join('');
+      }
+
+      adminTriggerBtn.addEventListener('click', () => {
+        renderAdminTable();
+        adminModal.removeAttribute('hidden');
+      });
+
+      closeAdminBtn.addEventListener('click', () => adminModal.setAttribute('hidden', ''));
+      doneAdminBtn.addEventListener('click', () => adminModal.setAttribute('hidden', ''));
+
+      // CSV Download
+      downloadCsvBtn.addEventListener('click', () => {
+        const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        if (data.length === 0) {
+          alert('No data to export!');
+          return;
+        }
+
+        const headers = ['Pass ID', 'Full Name', 'Registration Number', 'Phone Number', 'Email Address', 'Submission Timestamp'];
+        const csvRows = [headers.join(',')];
+
+        data.forEach(row => {
+          const values = [
+            `"${row.id}"`,
+            `"${row.name.replace(/"/g, '""')}"`,
+            `"${row.regno}"`,
+            `"${row.phone}"`,
+            `"${row.email.replace(/"/g, '""')}"`,
+            `"${row.timestamp}"`
+          ];
+          csvRows.push(values.join(','));
+        });
+
+        const blob = new Blob([csvRows.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('download', `code_fuzion_registrations_${new Date().toISOString().slice(0, 10)}.csv`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+
+      // Copy summary to clipboard
+      copySummaryBtn.addEventListener('click', () => {
+        const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        if (data.length === 0) {
+          alert('No data to copy!');
+          return;
+        }
+        const text = data.map((d, i) => `${i + 1}. ${d.name} | Reg: ${d.regno} | Phone: ${d.phone} | Email: ${d.email}`).join('\n');
+        navigator.clipboard.writeText(text).then(() => {
+          alert('Summary copied to clipboard!');
+        });
+      });
+
+      // Clear data
+      clearDataBtn.addEventListener('click', () => {
+        if (confirm('Are you sure you want to clear all stored registrations? This cannot be undone.')) {
+          localStorage.removeItem(STORAGE_KEY);
+          renderAdminTable();
+        }
+      });
+
+      // Keyboard shortcut for organizers: Ctrl + Shift + E
+      window.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.shiftKey && e.key === 'E') {
+          adminTriggerBtn.click();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
